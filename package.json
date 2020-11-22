@@ -34,7 +34,7 @@
     "eslint-plugin-import": "^2.22.1"
   },
   "engines": {
-    "node": "^10",
+    "node": ">=10",
     "parcel": "^2.0.0-alpha"
   }
 }
