@@ -14,11 +14,22 @@ const stripIndexHtml = (startsWith, url) => {
 
 // Exports.
 export default new Optimizer({
-  async optimize({ bundle, contents }) {
+  async optimize({
+    bundle,
+    contents,
+    map,
+    options,
+  }) {
+    // Disable in hot mode because wrong index.html might be served.
+    // @see https://github.com/parcel-bundler/parcel/issues/4740
+    if (options.hot) {
+      return { contents, map };
+    }
+
     const { publicUrl } = bundle.target;
     const plugin = urls({ eachURL: stripIndexHtml.bind(null, publicUrl) });
     return {
-      contents: (await posthtml([plugin]).process(contents)).html
+      contents: (await posthtml([plugin]).process(contents)).html,
     };
-  }
+  },
 });

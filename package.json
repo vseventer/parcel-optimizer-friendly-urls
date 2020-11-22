@@ -13,20 +13,26 @@
   "repository": "vseventer/parcel-optimizer-friendly-urls",
   "license": "MIT",
   "main": "lib/",
-  "source": "src/",
+  "module": "src/",
   "scripts": {
-    "postinstall": "cross-env babel -d $npm_package_main --verbose $npm_package_source"
+    "lint": "eslint src/",
+    "build": "babel src/ -d lib/",
+    "preversion": "npm run lint && npm run build && git add -A lib/"
   },
   "dependencies": {
-    "@babel/cli": "^7.8",
-    "@babel/core": "^7.8",
-    "@babel/preset-env": "^7.8",
-    "cross-env": "^7",
-    "@parcel/plugin": "^2.0.0-alpha.3",
-    "posthtml": "^0.12",
+    "@parcel/plugin": "^2.0.0-beta.1",
+    "posthtml": "^0.14",
     "posthtml-urls": "^1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.12.7",
+    "@babel/core": "^7.12.7",
+    "@babel/preset-env": "^7.12.7",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
   "engines": {
     "node": "^10",
     "parcel": "^2.0.0-alpha"
