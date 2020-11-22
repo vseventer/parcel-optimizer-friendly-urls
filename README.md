@@ -22,9 +22,9 @@ Next, add the plugin to the optimizer entry in your `.parcelrc`:
 
 ```json
 {
-  "extends": ["@parcel/config-default"],
+  "extends": "@parcel/config-default",
   "optimizers": {
-    "*.html": ["parcel-optimizer-friendly-urls", "@parcel/optimizer-htmlnano"]
+    "*.html": ["parcel-optimizer-friendly-urls", "..."]
   },
   ...
 }
